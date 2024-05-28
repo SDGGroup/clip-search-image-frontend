@@ -2,6 +2,9 @@
 	export let data;
 	export let form;
 	import { enhance } from '$app/forms';
+	function getOpacity(prob: number) {
+		return prob > 0.2 ? `${prob}` : '0.2';
+	}
 </script>
 
 <div class="image-container">
@@ -10,7 +13,7 @@
 			<img
 				src={url}
 				alt={`image-${i}`}
-				style="opacity: {form && form.probs ? form.probs[i] : 1};"
+				style="opacity: {form && form.probs ? getOpacity(form.probs[i]) : 1};"
 			/>
 			{#if form && form.probs}
 				<p>{form.probs[i]}</p>
@@ -19,7 +22,12 @@
 	{/each}
 </div>
 <form method="post" use:enhance>
-	<label>Insert query: <input name="query" type="text" /><button>Search</button></label>
+	<label class="label"
+		>Insert query: <input class="input" name="query" type="text" /><button
+			type="button"
+			class="variant-filled btn">Search</button
+		></label
+	>
 </form>
 
 <style lang="scss">

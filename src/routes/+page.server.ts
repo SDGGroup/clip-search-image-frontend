@@ -4,6 +4,7 @@ interface Items {
 interface Probs {
     probs: number[];
 }
+
 export async function load({ fetch }) {
     const res = await fetch("/api/items");
     const items: Items = await res.json();
