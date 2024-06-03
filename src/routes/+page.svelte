@@ -2,12 +2,13 @@
 	export let data;
 	export let form;
 	import { enhance } from '$app/forms';
+
 	function getOpacity(prob: number) {
 		return prob > 0.2 ? `${prob}` : '0.2';
 	}
 </script>
 
-<div class="image-container">
+<section class="grid grid-cols-10 gap-4">
 	{#each data.items as url, i}
 		<div class="item">
 			<img
@@ -20,21 +21,17 @@
 			{/if}
 		</div>
 	{/each}
-</div>
+</section>
 <form method="post" use:enhance>
 	<label class="label"
 		>Insert query: <input class="input" name="query" type="text" /><button
-			type="button"
+			type="submit"
 			class="variant-filled btn">Search</button
 		></label
 	>
 </form>
 
 <style lang="scss">
-	.image-container {
-		display: flex;
-		flex-wrap: wrap;
-	}
 	.item p {
 		text-align: center;
 	}
